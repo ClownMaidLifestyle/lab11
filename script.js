@@ -4,21 +4,27 @@ const images = ["bag","banana","bathroom","boots","breakfast",
                 "tauntaun","unicorn","water-can","wine-glass"];
 
 function ConstructProducts(id1,id2,id3){
-    
+    let firstProduct = document.getElementById("productOne");
+    let secondProduct = document.getElementById("productTwo");
+    let thirdProduct = document.getElementById("producThree");
+
+    const firstHeader = document.createElement("h3");
+    firstHeader.textContent = `${images[id1]}`;
+    firstProduct.appendChild(firstHeader);
+
 }
 
 function randomProducts(){
-    let id1 = (Math.random() * 3) + 1;
-    let id2 = (Math.random() * 3) + 1;
-    let id3 = (Math.random() * 3) + 1;
+    let id1 = parseInt((Math.random() * images.length -1) + 1);
 
-    while(id1 == id2 || id1 == id3){
-        id2 = (Math.random() * 3) + 1;
-        id3 = (Math.random() * 3) + 1;
+    let id2 = id1;
+    while (id2 == id1){
+        id2 = parseInt((Math.random() * images.length -1) + 1);
     }
-    while(id2 == id3){
-        id3 = (Math.random() * 3) + 1;
+    let id3 = id1;
+    while (id3 == id1 || id3 == id2){
+        id3 = parseInt((Math.random() * images.length -1) + 1);
     }
-
+    console.log("babygirl", id1,id2,id3);
     ConstructProducts(id1,id2,id3)
 }
