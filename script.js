@@ -3,7 +3,9 @@ const images = ["bag","banana","bathroom","boots","breakfast",
                 "pen","pet-sweep", "scissors", "shark", "sweep",
                 "tauntaun","unicorn","water-can","wine-glass"];
 
-function ConstructProducts(id1,id2,id3){
+const imageCounters = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
+
+                function ConstructProducts(id1,id2,id3){
     let firstProduct = document.getElementById("productOne");
     let secondProduct = document.getElementById("productTwo");
     let thirdProduct = document.getElementById("productThree");
@@ -13,6 +15,7 @@ function ConstructProducts(id1,id2,id3){
     firstProduct.appendChild(firstHeader);
     const firstImage = document.createElement("img")
     firstImage.setAttribute("src",`./images/${images[id1]}.jpg`);
+    firstImage.setAttribute("class","productImg");
     firstProduct.appendChild(firstImage);
 
     const secondHeader = document.createElement("h3");
@@ -20,6 +23,7 @@ function ConstructProducts(id1,id2,id3){
     secondProduct.appendChild(secondHeader);
     const secondImage = document.createElement("img")
     secondImage.setAttribute("src",`./images/${images[id2]}.jpg`);
+    secondImage.setAttribute("class","productImg");
     secondProduct.appendChild(secondImage);
 
     const thirdHeader = document.createElement("h3");
@@ -27,6 +31,7 @@ function ConstructProducts(id1,id2,id3){
     thirdProduct.appendChild(thirdHeader);
     const thirdImage = document.createElement("img")
     thirdImage.setAttribute("src",`./images/${images[id3]}.jpg`);
+    thirdImage.setAttribute("class","productImg");
     thirdProduct.appendChild(thirdImage);
 }
 
@@ -42,5 +47,9 @@ function randomProducts(){
         id3 = parseInt((Math.random() * images.length -1) + 1);
     }
     console.log("babygirl", id1,id2,id3);
+    imageCounters[id1]++;
+    imageCounters[id2]++;
+    imageCounters[id3]++;
     ConstructProducts(id1,id2,id3)
 }
+
