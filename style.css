@@ -1,0 +1,17 @@
+#container{
+    display: grid;
+    grid-template-columns: 40px, repeat(3), 40px;
+    width:100%;
+    
+}
+
+#productOne{
+    grid-column-start: 2;
+}
+
+#productTwo{
+    grid-column-start: 3;
+}
+#productThree{
+    grid-column-start: 4;
+}
