@@ -53,3 +53,6 @@ function randomProducts(){
     ConstructProducts(id1,id2,id3)
 }
 
+document.getElementById("productOne").addEventListener("click",function(){
+    randomProducts();
+});
