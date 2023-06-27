@@ -129,14 +129,24 @@ function newProducts(id1, id2, id3){
 
     thirdHeader.textContent=`${images[id3]}`;
     thirdImage.src=`./images/${images[id3]}.jpg`
+
+    let clickSum = 0;
+    for (let i = 0; i <imageCounters.length; i++){
+        clickSum += imageCounters[i];
+    }
+    if (clickSum >= 5){
+        showChart();
+    }
 }
 
-new Chart("resultsChart", {
-    type: "bar",
-    data: {
-        labels: images,
-        datasets: [{
-            data: imageCounters,
-        }]
-    }
-});
+function showChart(){
+    new Chart("resultsChart", {
+        type: "bar",
+        data: {
+            labels: images,
+            datasets: [{
+                data: imageCounters,
+            }]
+        }
+    });
+}
