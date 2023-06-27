@@ -3,9 +3,15 @@ const images = ["bag","banana","bathroom","boots","breakfast",
                 "pen","pet-sweep", "scissors", "shark", "sweep",
                 "tauntaun","unicorn","water-can","wine-glass"];
 
-const imageCounters = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
+let imagesViewed = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
+let imageCounters = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
+
 let firstRun = true;
 let cache = [];
+
+let id1 = -1;
+let id2 = -1;
+let id3 = -1;
 
                 function ConstructProducts(id1,id2,id3){
     let firstProduct = document.getElementById("productOne");
@@ -50,9 +56,7 @@ let cache = [];
 }
 
 function randomProducts(){
-    let id1 = -1;
-    let id2 = -1;
-    let id3 = -1;
+
     let cachetest = false
     while(cachetest == false){
         id1 = parseInt((Math.random() * images.length -1) + 1);
@@ -78,9 +82,9 @@ function randomProducts(){
     }
     
     console.log("babygirl", id1,id2,id3);
-    imageCounters[id1]++;
-    imageCounters[id2]++;
-    imageCounters[id3]++;
+    imagesViewed[id1]++;
+    imagesViewed[id2]++;
+    imagesViewed[id3]++;
         console.log(cache);
         console.log(id1 + " "+ id2 +" "+ id3);
         if(firstRun == true){
@@ -92,12 +96,15 @@ function randomProducts(){
 }
 
 document.getElementById("productOne").addEventListener("click",function(){
+    imageCounters[id1]++;
     randomProducts();
 });
 document.getElementById("productTwo").addEventListener("click",function(){
+    imageCounters[id2]++;
     randomProducts();
 });
 document.getElementById("productThree").addEventListener("click",function(){
+    imageCounters[id3]++;
     randomProducts();
 });
 
