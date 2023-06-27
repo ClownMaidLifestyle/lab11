@@ -5,6 +5,7 @@ const images = ["bag","banana","bathroom","boots","breakfast",
 
 const imageCounters = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
 let firstRun = true;
+let cache = [];
 
                 function ConstructProducts(id1,id2,id3){
     let firstProduct = document.getElementById("productOne");
@@ -49,33 +50,61 @@ let firstRun = true;
 }
 
 function randomProducts(){
-    let id1 = parseInt((Math.random() * images.length -1) + 1);
+    let id1 = -1;
+    let id2 = -1;
+    let id3 = -1;
+    let cachetest = false
+    while(cachetest == false){
+        id1 = parseInt((Math.random() * images.length -1) + 1);
 
-    let id2 = id1;
+    id2 = id1;
     while (id2 == id1){
         id2 = parseInt((Math.random() * images.length -1) + 1);
     }
-    let id3 = id1;
+    id3 = id1;
     while (id3 == id1 || id3 == id2){
         id3 = parseInt((Math.random() * images.length -1) + 1);
     }
+    cachetest = true;
+    if(id1 == cache[0] || id1 == cache[1] || id1 == cache[2]){
+        cachetest = false;
+    }
+    if(id2 == cache[0] || id2 == cache[1] || id2 == cache[2]){
+        cachetest = false;
+    }
+    if(id3 == cache[0] || id3 == cache[1] || id3 == cache[2]){
+        cachetest = false;
+    }
+    }
+    
     console.log("babygirl", id1,id2,id3);
     imageCounters[id1]++;
     imageCounters[id2]++;
     imageCounters[id3]++;
-    if(firstRun == true){
-        ConstructProducts(id1,id2,id3)
-    }
-    else{
-        newProducts(id1, id2, id3);
-    }
+        console.log(cache);
+        console.log(id1 + " "+ id2 +" "+ id3);
+        if(firstRun == true){
+            ConstructProducts(id1,id2,id3)
+        }
+        else{
+            newProducts(id1, id2, id3);
+        }
 }
 
 document.getElementById("productOne").addEventListener("click",function(){
     randomProducts();
 });
+document.getElementById("productTwo").addEventListener("click",function(){
+    randomProducts();
+});
+document.getElementById("productThree").addEventListener("click",function(){
+    randomProducts();
+});
 
 function newProducts(id1, id2, id3){
+    cache[0] = id1;
+    cache[1] = id2;
+    cache[2] = id3;
     let firstHeader = document.getElementById("firstHeader");
     let firstImage = document.getElementById("firstImage");
 
