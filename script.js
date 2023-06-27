@@ -4,6 +4,7 @@ const images = ["bag","banana","bathroom","boots","breakfast",
                 "tauntaun","unicorn","water-can","wine-glass"];
 
 const imageCounters = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
+let firstRun = true;
 
                 function ConstructProducts(id1,id2,id3){
     let firstProduct = document.getElementById("productOne");
@@ -11,28 +12,40 @@ const imageCounters = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,];
     let thirdProduct = document.getElementById("productThree");
 
     const firstHeader = document.createElement("h3");
+    firstHeader.setAttribute("id","firstHeader");
     firstHeader.textContent = `${images[id1]}`;
     firstProduct.appendChild(firstHeader);
+
     const firstImage = document.createElement("img")
     firstImage.setAttribute("src",`./images/${images[id1]}.jpg`);
     firstImage.setAttribute("class","productImg");
+    firstImage.setAttribute("id","firstImage");
     firstProduct.appendChild(firstImage);
 
     const secondHeader = document.createElement("h3");
+    secondHeader.setAttribute("id","secondHeader");
     secondHeader.textContent = `${images[id2]}`;
     secondProduct.appendChild(secondHeader);
+
     const secondImage = document.createElement("img")
     secondImage.setAttribute("src",`./images/${images[id2]}.jpg`);
     secondImage.setAttribute("class","productImg");
+    secondImage.setAttribute("id","secondImage");
     secondProduct.appendChild(secondImage);
 
     const thirdHeader = document.createElement("h3");
+    thirdHeader.setAttribute("id","thirdHeader");
     thirdHeader.textContent = `${images[id3]}`;
     thirdProduct.appendChild(thirdHeader);
+
     const thirdImage = document.createElement("img")
     thirdImage.setAttribute("src",`./images/${images[id3]}.jpg`);
     thirdImage.setAttribute("class","productImg");
+    thirdImage.setAttribute("id","thirdImage");
     thirdProduct.appendChild(thirdImage);
+
+    firstRun = false;
+    console.log("homies./..");
 }
 
 function randomProducts(){
@@ -50,9 +63,22 @@ function randomProducts(){
     imageCounters[id1]++;
     imageCounters[id2]++;
     imageCounters[id3]++;
-    ConstructProducts(id1,id2,id3)
+    if(firstRun == true){
+        ConstructProducts(id1,id2,id3)
+    }
+    else{
+        newProducts(id1, id2, id3);
+    }
 }
 
 document.getElementById("productOne").addEventListener("click",function(){
     randomProducts();
 });
+
+function newProducts(id1, id2, ids3){
+    let firstHeader = document.getElementById("firstHeader");
+    let firstImage = document.getElementById("firstImage");
+
+    firstHeader.textContent=`${images[id1]}`;
+    firstImage.src=`./images/${images[id1]}.jpg`
+}
