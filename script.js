@@ -130,3 +130,13 @@ function newProducts(id1, id2, id3){
     thirdHeader.textContent=`${images[id3]}`;
     thirdImage.src=`./images/${images[id3]}.jpg`
 }
+
+new Chart("resultsChart", {
+    type: "bar",
+    data: {
+        labels: images,
+        datasets: [{
+            data: imageCounters,
+        }]
+    }
+});
