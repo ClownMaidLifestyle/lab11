@@ -75,10 +75,22 @@ document.getElementById("productOne").addEventListener("click",function(){
     randomProducts();
 });
 
-function newProducts(id1, id2, ids3){
+function newProducts(id1, id2, id3){
     let firstHeader = document.getElementById("firstHeader");
     let firstImage = document.getElementById("firstImage");
 
     firstHeader.textContent=`${images[id1]}`;
     firstImage.src=`./images/${images[id1]}.jpg`
+
+    let secondHeader = document.getElementById("secondHeader");
+    let secondImage = document.getElementById("secondImage");
+
+    secondHeader.textContent=`${images[id2]}`;
+    secondImage.src=`./images/${images[id2]}.jpg`
+
+    let thirdHeader = document.getElementById("thirdHeader");
+    let thirdImage = document.getElementById("thirdImage");
+
+    thirdHeader.textContent=`${images[id3]}`;
+    thirdImage.src=`./images/${images[id3]}.jpg`
 }
