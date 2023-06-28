@@ -162,22 +162,4 @@ function saveData(views, counts) {
     for(let i = 0; i < counts.length; i++){
         localStorage.setItem(`counts - ${images[i]}`, counts[i]);
     }
-
-    /*
-    let storeViews = 0;
-    let storeCounts = 0;
-
-
-    for (let i = 0; i <views.length; i++){
-        storeViews += views[i];
-    }
-    for (let i = 0; i <counts.length; i++){
-        storeCounts += counts[i];
-    }
-
-    storeViews = JSON.stringify(views);
-    storeCounts = JSON.stringify(counts);
-    localStorage.setItem("views", storeViews);
-    localStorage.setItem("counts",storeCounts);
-    */
 }
