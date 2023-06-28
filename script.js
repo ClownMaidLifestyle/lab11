@@ -137,6 +137,8 @@ function newProducts(id1, id2, id3){
     if (clickSum >= 5){
         showChart();
     }
+
+    saveData(imagesViewed, imageCounters);
 }
 
 function showChart(){
@@ -149,4 +151,33 @@ function showChart(){
             }]
         }
     });
+}
+
+function saveData(views, counts) {
+
+    for(let i = 0; i < views.length; i++){
+        localStorage.setItem(`views - ${images[i]}`, views[i]);
+    }
+
+    for(let i = 0; i < counts.length; i++){
+        localStorage.setItem(`counts - ${images[i]}`, counts[i]);
+    }
+
+    /*
+    let storeViews = 0;
+    let storeCounts = 0;
+
+
+    for (let i = 0; i <views.length; i++){
+        storeViews += views[i];
+    }
+    for (let i = 0; i <counts.length; i++){
+        storeCounts += counts[i];
+    }
+
+    storeViews = JSON.stringify(views);
+    storeCounts = JSON.stringify(counts);
+    localStorage.setItem("views", storeViews);
+    localStorage.setItem("counts",storeCounts);
+    */
 }
