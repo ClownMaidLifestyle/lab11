@@ -14,6 +14,7 @@ let id2 = -1;
 let id3 = -1;
 
                 function ConstructProducts(id1,id2,id3){
+                    loadData();
     let firstProduct = document.getElementById("productOne");
     let secondProduct = document.getElementById("productTwo");
     let thirdProduct = document.getElementById("productThree");
@@ -56,7 +57,7 @@ let id3 = -1;
 }
 
 function randomProducts(){
-
+    checkChart();
     let cachetest = false
     while(cachetest == false){
         id1 = parseInt((Math.random() * images.length -1) + 1);
@@ -109,6 +110,7 @@ document.getElementById("productThree").addEventListener("click",function(){
 });
 
 function newProducts(id1, id2, id3){
+    checkChart();
     cache[0] = id1;
     cache[1] = id2;
     cache[2] = id3;
@@ -130,36 +132,52 @@ function newProducts(id1, id2, id3){
     thirdHeader.textContent=`${images[id3]}`;
     thirdImage.src=`./images/${images[id3]}.jpg`
 
+
+
+    saveData(imagesViewed, imageCounters);
+}
+
+function checkChart(){
+    console.log("this bitch running");
     let clickSum = 0;
     for (let i = 0; i <imageCounters.length; i++){
         clickSum += imageCounters[i];
     }
     if (clickSum >= 5){
-        showChart();
+        new Chart("resultsChart", {
+            type: "bar",
+            data: {
+                labels: images,
+                datasets: [{
+                    data: imageCounters,
+                }]
+            }
+        });
     }
-
-    saveData(imagesViewed, imageCounters);
-}
-
-function showChart(){
-    new Chart("resultsChart", {
-        type: "bar",
-        data: {
-            labels: images,
-            datasets: [{
-                data: imageCounters,
-            }]
-        }
-    });
+    console.log("!!!!"+clickSum);
 }
 
 function saveData(views, counts) {
 
+    localStorage.setItem("dataSaved", true);
     for(let i = 0; i < views.length; i++){
         localStorage.setItem(`views - ${images[i]}`, views[i]);
     }
 
     for(let i = 0; i < counts.length; i++){
         localStorage.setItem(`counts - ${images[i]}`, counts[i]);
+    }
+}
+
+function loadData(){
+    let dataCheck = JSON.parse(localStorage.getItem("dataSaved"));
+    if (dataCheck == true){
+        for(let i = 0; i < images.length; i++){
+            imagesViewed[i] = JSON.parse(localStorage.getItem(`views - ${images[i]}`))
+            imageCounters[i] = JSON.parse(localStorage.getItem(`counts - ${images[i]}`))
+            console.log(`image thingy ${imagesViewed[i]}`)
+            imagesViewed[i] = parseInt(imagesViewed[i]);
+            imageCounters[i] = parseInt(imageCounters[i]);
+        }
     }
 }
